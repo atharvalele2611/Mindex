@@ -5,6 +5,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import de.bwaldvogel.mongo.MongoServer;
 import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
+
+import java.net.InetSocketAddress;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -29,12 +32,15 @@ public class MongoConfig{
     public MongoServer mongoServer() {
         MongoServer mongoServer = new MongoServer(new MemoryBackend());
         mongoServer.bind();
+        System.out.println("monogoserver" + mongoServer);
         return mongoServer;
     }
 
     @Bean(destroyMethod="close")
     public MongoClient mongoClient() {
-        return MongoClients.create("mongodb:/" + mongoServer().getLocalAddress());
+    	InetSocketAddress a = mongoServer().getLocalAddress();
+    	System.out.println("mongodb:/" + a);
+        return MongoClients.create("mongodb:/" + a);
     }
 }
 

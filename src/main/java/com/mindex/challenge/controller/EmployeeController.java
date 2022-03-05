@@ -2,6 +2,13 @@ package com.mindex.challenge.controller;
 
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.service.EmployeeService;
+
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +22,19 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/employee")
-    public Employee create(@RequestBody Employee employee) {
+    public Employee create(@Valid @NotBlank @NotNull @RequestBody Employee employee) {
         LOG.debug("Received employee create request for [{}]", employee);
 
         return employeeService.create(employee);
     }
 
+    @GetMapping("/employee/")
+    public List<Employee> getAllEmployees() {
+        LOG.debug("Received get All Employee request");
+
+        return employeeService.getAll();
+    }
+    
     @GetMapping("/employee/{id}")
     public Employee read(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
@@ -29,7 +43,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee/{id}")
-    public Employee update(@PathVariable String id, @RequestBody Employee employee) {
+    public Employee update(@PathVariable String id,@Valid @NotBlank @NotNull @RequestBody Employee employee) {
         LOG.debug("Received employee create request for id [{}] and employee [{}]", id, employee);
 
         employee.setEmployeeId(id);

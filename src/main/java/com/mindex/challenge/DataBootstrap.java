@@ -22,6 +22,7 @@ public class DataBootstrap {
 
     @PostConstruct
     public void init() {
+    	System.out.println("init called");
         InputStream inputStream = this.getClass().getResourceAsStream(DATASTORE_LOCATION);
 
         Employee[] employees = null;

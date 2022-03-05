@@ -1,10 +1,21 @@
 package com.mindex.challenge.data;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.data.annotation.Id;
+
 public class Employee {
+	// to fix the issue where save inserts instead of updating. 
+	// This will bind employeeId to _id making it unique. 
+	// Else every Object is treated as a new object
+	@Id	 
     private String employeeId;
+	@NotBlank
     private String firstName;
+	@NotBlank
     private String lastName;
     private String position;
     private String department;
@@ -59,5 +70,11 @@ public class Employee {
 
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
+    }
+    
+    @Override
+    public String toString() {
+    	String directR = directReports != null ? Arrays.toString(directReports.toArray()) : "";
+    	return employeeId + " " + firstName +" " + lastName + " " + position + " " + department + " " + directR; 
     }
 }
