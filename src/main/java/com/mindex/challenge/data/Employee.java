@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 
@@ -17,7 +18,9 @@ public class Employee {
     private String firstName;
 	@NotBlank
     private String lastName;
+	@NotNull
     private String position;
+	@NotNull
     private String department;
     private List<Employee> directReports;
 
