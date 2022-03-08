@@ -1,3 +1,12 @@
+/*
+ * Employee.java
+ *
+ * Version:
+ *     v1.0
+ *
+ * Revisions:
+ *     $Log$
+ */
 package com.mindex.challenge.data;
 
 import java.util.Arrays;
