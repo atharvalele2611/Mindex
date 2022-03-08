@@ -28,8 +28,10 @@ public class Compensation {
 	@Id		// binds employeeId to the _id in mongo implying that this is unique.
 	@JsonProperty("employeeId")
 	private String employeeId;
+	// salaries as a string are harder to parse because is a variable factor and salary without a currency doesn't make since.
+	// therefore created a seperate class to store the details of that salary.
 	@NotNull
-	private Salary salary;	// salary type which has amount and currency.
+	private Salary salary;	
 	@NotNull
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
 	private Date effectiveDate;
