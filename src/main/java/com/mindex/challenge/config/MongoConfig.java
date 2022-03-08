@@ -41,7 +41,6 @@ public class MongoConfig{
     @Bean(destroyMethod="close")
     public MongoClient mongoClient() {
     	InetSocketAddress a = mongoServer().getLocalAddress();
-    	System.out.println("mongodb:/" + a);
         return MongoClients.create("mongodb:/" + a);
     }
 }

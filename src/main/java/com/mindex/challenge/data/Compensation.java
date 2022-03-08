@@ -69,12 +69,20 @@ public class Compensation {
 		return salary;
 	}
 
+	public void setSalary(Salary salary) {
+		this.salary = salary;
+	}
+	
 	/**
 	 * getter for date
 	 * @returneffectiveDate
 	 */
 	public Date getEffectiveDate() {
 		return effectiveDate;
+	}
+	
+	public void setEffectiveDate(Date date) {
+		this.effectiveDate = date; 
 	}
 
 	@Override
